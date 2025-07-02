@@ -69,9 +69,11 @@ async function run()
         if (verElement2)
         {
             const ver = parse_version(verElement2.data);
+
             if (ver)
             {
-                core.setOutput('version', verElement2.data);
+                // Use Environment Files for GitHub Actions output
+                fs.appendFileSync(process.env.GITHUB_OUTPUT, `version=${verElement2.data}\n`);
             }
             else
             {
